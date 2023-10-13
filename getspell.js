@@ -4,20 +4,35 @@ function getSpell() {
     
     fetch(apiUrl)
         .then(response => response.json())
-        .then(data => displaySpell(data))
+        .then(data => {
+            if (data.results.length > 0) {
+                const spellUrl = data.results[0].url;
+                return fetch(`https://www.dnd5eapi.co${spellUrl}`);
+            } else {
+                throw new Error("Spell not found");
+            }
+        })
+        .then(response => response.json())
+        .then(data => displaySpellDetails(data))
         .catch(error => console.error(error));
 }
 
-function displaySpell(data) {
+function displaySpellDetails(data) {
     const spellInfo = document.getElementById("spell-info");
-    spellInfo.innerHTML = `
-        <h2>${data.name}</h2>
-        <p><strong>Level:</strong> ${data.level}</p>
-        <p><strong>School:</strong> ${data.school.name}</p>
-        <p><strong>Casting Time:</strong> ${data.casting_time}</p>
-        <p><strong>Range:</strong> ${data.range}</p>
-        <p><strong>Components:</strong> ${data.components.join(", ")}</p>
-        <p><strong>Duration:</strong> ${data.duration}</p>
-        <p><strong>Description:</strong> ${data.desc.join("<br>")}</p>
-    `;
+    console.log(data);
+    
+    if (data && data.name) {
+        spellInfo.innerHTML = `
+            <h2>${data.name}</h2>
+            <p><strong>Level:</strong> ${data.level}</p>
+            <p><strong>School:</strong> ${data.school ? data.school.name : "N/A"}</p>
+            <p><strong>Casting Time:</strong> ${data.casting_time}</p>
+            <p><strong>Range:</strong> ${data.range}</p>
+            <p><strong>Components:</strong> ${data.components ? data.components.join(", ") : "N/A"}</p>
+            <p><strong>Duration:</strong> ${data.duration}</p>
+            <p><strong>Description:</strong> ${data.desc ? data.desc.join("<br>") : "No description available"}</p>
+        `;
+    } else {
+        spellInfo.innerHTML = "Spell not found";
+    }
 }
