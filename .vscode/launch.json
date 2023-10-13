@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "https://www.dnd5eapi.co/api/spells/?name=${spellName}",
+            "request": "launch",
+            "url": "https://www.dnd5eapi.co/api/spells/?name=${spellName}"
+        }
+    ]
+}
