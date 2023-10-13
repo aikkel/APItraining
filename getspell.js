@@ -27,6 +27,8 @@ function displaySpellDetails(data) {
             <p><strong>Level:</strong> ${data.level}</p>
             <p><strong>School:</strong> ${data.school ? data.school.name : "N/A"}</p>
             <p><strong>Casting Time:</strong> ${data.casting_time}</p>
+            <p><strong>Attack type:</strong> ${data.attack_type}</p>
+            <p><strong>Damage:</strong> ${data.higher_level}</p>
             <p><strong>Range:</strong> ${data.range}</p>
             <p><strong>Components:</strong> ${data.components ? data.components.join(", ") : "N/A"}</p>
             <p><strong>Duration:</strong> ${data.duration}</p>
