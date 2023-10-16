@@ -3,7 +3,7 @@
 // Function to fetch and display a random spell
 function getRandomSpell() {
     // Fetch the list of available spells from the API
-    fetch("https://www.dnd5eapi.co/api/spells")
+    fetch("https://www.dnd5eapi.co/api/spells/")
         .then(response => response.json())
         .then(data => {
             if (data.results && data.results.length > 0) {
