@@ -1,36 +1,22 @@
-// randomspell.js
-
-// Function to fetch and display a random spell
-function getRandomSpell() {
-    // Fetch the list of available spells from the API
-    fetch("https://www.dnd5eapi.co/api/spells/")
-        .then(response => response.json())
-        .then(data => {
-            if (data.results && data.results.length > 0) {
-                const randomIndex = Math.floor(Math.random() * data.results.length);
-                const randomSpell = data.results[randomIndex];
-
-                // Fetch the details of the randomly selected spell
-                return fetch(randomSpell.url);
-            } else {
-                throw new Error("No spells found in the API.");
-            }
-        })
-        .then(response => response.json())
-        .then(data => displayRandomSpell(data))
-        .catch(error => console.error(error));
-}
-
-// Function to display the details of the randomly selected spell
-function displayRandomSpell(spell) {
-    const spellInfo = document.getElementById("spell-info");
-
-    if (spell) {
-        spellInfo.innerHTML = `
-            <h2>${spell.name}</h2>
-            <p><strong>Description:</strong> ${spell.desc ? spell.desc.join("<br>") : "No description available"}</p>
-        `;
-    } else {
-        spellInfo.innerHTML = "Spell not found";
-    }
-}
+async function getRandomSpell() {
+    const spellsResponse = await fetch("https://www.dnd5eapi.co/api/spells/");
+    const spellsData = await spellsResponse.json();
+  
+    const spells = spellsData.results;
+    const randomIndex = Math.floor(Math.random() * spells.length);
+    const randomSpell = spells[randomIndex];
+  
+    const spellDetailsResponse = await fetch(`https://www.dnd5eapi.co${randomSpell.url}`);
+    const spellDetailsData = await spellDetailsResponse.json();
+  
+    const spellName = spellDetailsData.name;
+    const spellDescription = spellDetailsData.desc;
+  
+    const spellDetailsElement = document.getElementById("spellDetails");
+    spellDetailsElement.innerHTML = `<h2>Random Spell: ${spellName}</h2><p>Description: ${spellDescription}</p>`;
+  }
+  
+  // Attach the getRandomSpell function to the button click event
+  const generateSpellButton = document.getElementById("generateSpellButton");
+  generateSpellButton.addEventListener("click", getRandomSpell);
+  
