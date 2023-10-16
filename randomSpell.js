@@ -19,9 +19,10 @@ async function getRandomSpell() {
 
     // Update HTML to display the random spell info
     document.getElementById("spell-name").innerHTML = `<h2>${spellName}</h2>`;
-    document.getElementById("spell-level").textContent = `Level: ${spellLevel}`;
-    document.getElementById("spell-range").textContent = `Range: ${spellRange}`;
-    document.getElementById("spell-components").textContent = `Components: ${spellComponents}`;
-    document.getElementById("spell-description").innerHTML = `Description: ${spellDescription}`;
+    document.getElementById("spell-level").innerHTML = `<p><strong>Level:</strong> ${spellLevel}</p>`;
+    document.getElementById("spell-range").innerHTML = `<p><strong>Range:</strong> ${spellRange}</p>`;
+    document.getElementById("spell-components").innerHTML = `<p><strong>Components:</strong> ${spellComponents}</p>`;
+    document.getElementById("spell-description").innerHTML = `<p><strong>Description:</strong> ${spellDescription}</p>`;
+    
     // You can add more elements to display other properties
 }
