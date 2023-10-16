@@ -28,6 +28,3 @@ async function getRandomSpell() {
     console.log(`Range: ${spellRange}`);
     console.log(`Components: ${spellComponents.join(", ")}`);
 }
-
-// Remove this line to prevent it from running on page load
-// getRandomSpell();
