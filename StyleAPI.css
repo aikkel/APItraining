@@ -42,16 +42,17 @@ textarea {
 }
 
 /* Style the form button */
-button[type="submit"] {
+button[type="button"] {
   padding: 1rem 2rem;
-  background-color: #007acc;
+  background-color: #0069af;
   color: #fff;
+  margin: 5px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 /* Style the form button on hover */
-button[type="submit"]:hover {
+button[type="button"]:hover {
   background-color: #005b9f;
 }
