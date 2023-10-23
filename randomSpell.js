@@ -1,4 +1,5 @@
 async function getRandomSpell() {
+   
     const spellsResponse = await fetch("https://www.dnd5eapi.co/api/spells/");
     const spellsData = await spellsResponse.json();
 
@@ -18,7 +19,7 @@ async function getRandomSpell() {
     // You can add more properties as needed
 
     // Update HTML to display the random spell info
-    document.getElementById("spell-name").innerHTML = `<h2>${spellName}</h2>`;
+    document.getElementById("spell-info-name").innerHTML = `<h2>${spellName}</h2>`;
     document.getElementById("spell-level").innerHTML = `<p><strong>Level:</strong> ${spellLevel}</p>`;
     document.getElementById("spell-range").innerHTML = `<p><strong>Range:</strong> ${spellRange}</p>`;
     document.getElementById("spell-components").innerHTML = `<p><strong>Components:</strong> ${spellComponents}</p>`;
