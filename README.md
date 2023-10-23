@@ -1,5 +1,10 @@
 # APItraining
 
+Lavet af Lucas - Mikkel - Sofia - Casper
+
+
+
+
 D&D 
 Random spell lookup.
 Look up specific spell.
